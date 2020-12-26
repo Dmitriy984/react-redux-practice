@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import store from '../../app/store'
-import counterReducer
-, {
+import {
 //   decrement,
 //   increment,
 //   incrementByAmount,
@@ -14,7 +14,7 @@ import styles from './Counter.module.css';
 
 export function Counter() {
   const count = useSelector(selectCount);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   return (
