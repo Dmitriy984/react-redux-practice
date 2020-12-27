@@ -45,14 +45,17 @@ export function Counter() {
           value={incrementAmount}
           onChange={e => setIncrementAmount(e.target.value)}
         />
-        {/* <button
+        {<button
           className={styles.button}
-          onClick={() =>
-            dispatch(incrementByAmount(Number(incrementAmount) || 0))
+          onClick={() => {
+            const payload = Number(incrementAmount) || 0;
+            return store.dispatch({ type: 'counter/incrementByAmount', payload})
+          }
+
           }
         >
           Add Amount
-        </button> */}
+        </button>}
         {/* <button
           className={styles.asyncButton}
           onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}

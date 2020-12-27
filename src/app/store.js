@@ -1,5 +1,5 @@
 //import { configureStore } from '@reduxjs/toolkit';
-import { createStore } from 'redux'
+import { createStore } from 'redux';
 import counterReducer from '../features/counter/counterSlice';
 
 // export default configureStore({
@@ -10,6 +10,8 @@ import counterReducer from '../features/counter/counterSlice';
 
 let store = createStore(counterReducer)
 
-console.log(store.getState());
+store.subscribe(() => {
+    console.log(store.getState());
+})
 
-export default store
+export default store;
