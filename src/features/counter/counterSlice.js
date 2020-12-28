@@ -72,7 +72,6 @@ function counterReducer(state = { value: cookiesState }, action) {
 const incremented = () => ({type: 'counter/incremented'});
 const decremented = () => ({type: 'counter/decremented'});
 const incrementByAmount = (payload) => ({type: 'counter/incrementByAmount', payload});
-
 const selectCount = state => state.value;
 
 export {incremented, decremented, incrementByAmount, selectCount};

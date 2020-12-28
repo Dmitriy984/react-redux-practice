@@ -53,7 +53,8 @@ export function Counter() {
           onClick={() => {
             setTimeout(() => {
               store.dispatch(incrementByAmount((Number(incrementAmount) || 0)));
-            }, 1000);}
+            }, 1000);
+            }
           }
         >
           Add Async
