@@ -1,36 +1,62 @@
-// import { createSlice } from '@reduxjs/toolkit';
+// export const Hash = {
+// 	// Получаем данные из адреса
+// 	get: function() {
+// 		let vars = {}, hash, splitter, hashes;
 
-// export const counterSlice = createSlice({
-//   name: 'counter',
-//   initialState: {
-//     value: 0,
-//   },
-//   reducers: {
-//     increment: state => {
-//       // Redux Toolkit allows us to write "mutating" logic in reducers. It
-//       // doesn't actually mutate the state because it uses the Immer library,
-//       // which detects changes to a "draft state" and produces a brand new
-//       // immutable state based off those changes
-//       state.value += 1;
-//     },
-//     decrement: state => {
-//       state.value -= 1;
-//     },
-//     incrementByAmount: (state, action) => {
-//       state.value += action.payload;
-//     },
-//   },
-// });
+//         hashes = decodeURIComponent(window.location.hash.substr(1));
+//         splitter = '/';
 
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
-// const initialState = {
-//     value: 0
-// }
+// 		if (hashes.length === 0) {return vars;}
+// 		else {hashes = hashes.split(splitter);}
 
-//const cookiesState = document.cookie.replace(/(?:(?:^|.*;\s*)state\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+// 		for (var i in hashes) {
+// 			if (hashes.hasOwnProperty(i)) {
+// 				hash = hashes[i].split('=');
+// 				if (typeof hash[1] == 'undefined') {
+// 					vars['anchor'] = hash[0];
+// 				}
+// 				else {
+// 					vars[hash[0]] = hash[1];
+// 				}
+// 			}
+// 		}
+// 		return vars;
+// 	},
+// 	// Заменяем данные в адресе на полученный массив
+// 	set: function(vars) {
+// 		let hash = '';
+// 		for (var i in vars) {
+// 			if (vars.hasOwnProperty(i)) {
+// 				hash += '&' + i + '=' + vars[i];
+// 			}
+// 		}
 
-function counterReducer(state = { value: 0 }, action) {
+// 		window.location.hash = hash.substr(1);
+
+// 	},
+// 	// Добавляем одно значение в адрес
+// 	add: function(key, val) {
+// 		const hash = this.get();
+// 		hash[key] = val;
+// 		this.set(hash);
+// 	},
+// 	// Удаляем одно значение из адреса
+// 	remove: function(key) {
+// 		const hash = this.get();
+// 		delete hash[key];
+// 		this.set(hash);
+// 	},
+// 	// Очищаем все значения в адресе
+// 	clear: function() {
+// 		this.set({});
+// 	},
+// };
+
+//const hashState = +Hash.get().value || 0;
+const cookiesState = +document.cookie.replace(/(?:(?:^|.*;\s*)state\s*\=\s*([^;]*).*$)|^.*$/, "$1") || 0;
+
+function counterReducer(state = { value: cookiesState }, action) {
   switch (action.type) {
     case 'counter/incremented':
       return { value: state.value + 1 }
@@ -43,22 +69,12 @@ function counterReducer(state = { value: 0 }, action) {
   }
 }
 
+const incremented = () => ({type: 'counter/incremented'});
+const decremented = () => ({type: 'counter/decremented'});
+const incrementByAmount = (payload) => ({type: 'counter/incrementByAmount', payload});
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-// export const incrementAsync = amount => dispatch => {
-//   setTimeout(() => {
-//     dispatch(incrementByAmount(amount));
-//   }, 1000);
-// };
+const selectCount = state => state.value;
 
+export {incremented, decremented, incrementByAmount, selectCount};
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCount = state => state.value;
-
-// export default counterSlice.reducer;
 export default counterReducer;

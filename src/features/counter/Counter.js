@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-//import { useSelector, useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import store from '../../app/store'
-import {
-//   decrement,
-//   increment,
-//   incrementByAmount,
-  // incrementAsync,
-  selectCount,
-} 
-from './counterSlice';
+import store from '../../app/store';
+import { 
+    incremented,
+    decremented,
+    incrementByAmount,
+    selectCount 
+} from './counterSlice';
 import styles from './Counter.module.css';
 
 export function Counter() {
   const count = useSelector(selectCount);
-  // const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   return (
@@ -23,8 +19,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          // onClick={() => dispatch(increment())}
-          onClick={() => store.dispatch({ type: 'counter/incremented' })}
+          onClick={() => store.dispatch(incremented())}
         >
           +
         </button>
@@ -32,8 +27,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          // onClick={() => dispatch(decrement())}
-          onClick={() => store.dispatch({ type: 'counter/decremented' })}
+          onClick={() => store.dispatch(decremented())}
         >
           -
         </button>
@@ -48,8 +42,7 @@ export function Counter() {
         {<button
           className={styles.button}
           onClick={() => {
-              const payload = Number(incrementAmount) || 0;
-              return store.dispatch({ type: 'counter/incrementByAmount', payload })
+              return store.dispatch(incrementByAmount((Number(incrementAmount) || 0)));
             }
           }
         >
@@ -59,8 +52,7 @@ export function Counter() {
           className={styles.asyncButton}
           onClick={() => {
             setTimeout(() => {
-              const payload = Number(incrementAmount) || 0;
-              store.dispatch( {type: 'counter/incrementByAmount', payload});
+              store.dispatch(incrementByAmount((Number(incrementAmount) || 0)));
             }, 1000);}
           }
         >
