@@ -24,6 +24,11 @@
 
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
+// const initialState = {
+//     value: 0
+// }
+
+//const cookiesState = document.cookie.replace(/(?:(?:^|.*;\s*)state\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
 function counterReducer(state = { value: 0 }, action) {
   switch (action.type) {

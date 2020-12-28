@@ -11,7 +11,7 @@ import counterReducer from '../features/counter/counterSlice';
 let store = createStore(counterReducer)
 
 store.subscribe(() => {
-    console.log(store.getState());
+    document.cookie = `state=${store.getState()}`;
 })
 
 export default store;
