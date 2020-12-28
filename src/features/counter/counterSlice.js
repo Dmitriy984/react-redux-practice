@@ -1,6 +1,6 @@
-const cookiesState = +document.cookie.replace(/(?:(?:^|.*;\s*)state\s*\=\s*([^;]*).*$)|^.*$/, "$1") || 0;
+const localStorageState = localStorage.getItem('value') || 0;
 
-function counterReducer(state = { value: cookiesState }, action) {
+function counterReducer(state = { value: localStorageState }, action) {
   switch (action.type) {
     case 'counter/incremented':
       return { value: state.value + 1 }

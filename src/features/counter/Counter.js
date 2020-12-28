@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import store from '../../app/store';
-import { 
+import {
     incremented,
     decremented,
     incrementByAmount,
-    selectCount 
+    selectCount
 } from './counterSlice';
 import styles from './Counter.module.css';
 
