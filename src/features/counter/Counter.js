@@ -7,16 +7,6 @@ import { selectCount } from './counterReducer';
 import styles from './Counter.module.css';
 
 const {dispatch} = store;
-// const bindActionCreator = (creator, dispatch) => (...args) => {
-//     dispatch(creator(...args));
-// }
-
-// actions = {
-//     incremented: incremented,
-//     decremented: decremented,
-//     toZero: toZero,
-//     incrementByAmount: incrementByAmount
-// }
 
 const {incremented, decremented, toZero, incrementByAmount} = bindActionCreators(actions, dispatch);
 
