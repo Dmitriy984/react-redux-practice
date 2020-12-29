@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { bindActionCreators } from 'redux';
 import { useSelector } from 'react-redux';
 import store from '../../app/store';
 import {
@@ -11,6 +12,18 @@ import { selectCount } from './counterReducer';
 import styles from './Counter.module.css';
 
 const {dispatch} = store;
+// const bindActionCreator = (creator, dispatch) => (...args) => {
+//     dispatch(creator(...args));
+// }
+
+const {incDispatch, decDispatch, toZeroDispatch, incByAmountDispatch} = bindActionCreators(
+{
+    incDispatch: incremented,
+    decDispatch: decremented,
+    toZeroDispatch: toZero,
+    incByAmountDispatch: incrementByAmount,
+}
+, dispatch);
 
 export function Counter() {
   const count = useSelector(selectCount);
@@ -22,7 +35,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => dispatch(incremented())}
+          onClick={() => incDispatch()}
         >
           +
         </button>
@@ -30,14 +43,14 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => dispatch(decremented())}
+          onClick={() => decDispatch()}
         >
           -
         </button>
         <button
           className={styles.button}
           aria-label="Zero value"
-          onClick={() => dispatch(toZero())}
+          onClick={() => toZeroDispatch()}
         >
           0
         </button>
@@ -51,10 +64,7 @@ export function Counter() {
         />
         {<button
           className={styles.button}
-          onClick={() => {
-              return dispatch(incrementByAmount((Number(incrementAmount) || 0)));
-            }
-          }
+          onClick={() => incByAmountDispatch((Number(incrementAmount) || 0))}
         >
           Add Amount
         </button>}
@@ -62,7 +72,7 @@ export function Counter() {
           className={styles.asyncButton}
           onClick={() => {
             setTimeout(() => {
-              dispatch(incrementByAmount((Number(incrementAmount) || 0)));
+              incByAmountDispatch((Number(incrementAmount) || 0));
             }, 1000);
             }
           }
