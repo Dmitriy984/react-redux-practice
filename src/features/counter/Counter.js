@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { useSelector } from 'react-redux';
 import store from '../../app/store';
-import {
-    incremented,
-    decremented,
-    toZero,
-    incrementByAmount
-} from './actions';
+import * as actions from './actions';
 import { selectCount } from './counterReducer';
 import styles from './Counter.module.css';
 
@@ -16,14 +11,14 @@ const {dispatch} = store;
 //     dispatch(creator(...args));
 // }
 
-const {incDispatch, decDispatch, toZeroDispatch, incByAmountDispatch} = bindActionCreators(
-{
-    incDispatch: incremented,
-    decDispatch: decremented,
-    toZeroDispatch: toZero,
-    incByAmountDispatch: incrementByAmount,
-}
-, dispatch);
+// actions = {
+//     incremented: incremented,
+//     decremented: decremented,
+//     toZero: toZero,
+//     incrementByAmount: incrementByAmount
+// }
+
+const {incremented, decremented, toZero, incrementByAmount} = bindActionCreators(actions, dispatch);
 
 export function Counter() {
   const count = useSelector(selectCount);
@@ -35,7 +30,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => incDispatch()}
+          onClick={incremented}
         >
           +
         </button>
@@ -43,14 +38,14 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => decDispatch()}
+          onClick={() => decremented}
         >
           -
         </button>
         <button
           className={styles.button}
           aria-label="Zero value"
-          onClick={() => toZeroDispatch()}
+          onClick={toZero}
         >
           0
         </button>
@@ -64,7 +59,10 @@ export function Counter() {
         />
         {<button
           className={styles.button}
-          onClick={() => incByAmountDispatch((Number(incrementAmount) || 0))}
+          onClick={() => {
+            incrementByAmount((Number(incrementAmount) || 0))
+            }
+          }
         >
           Add Amount
         </button>}
@@ -72,7 +70,7 @@ export function Counter() {
           className={styles.asyncButton}
           onClick={() => {
             setTimeout(() => {
-              incByAmountDispatch((Number(incrementAmount) || 0));
+              incrementByAmount((Number(incrementAmount) || 0));
             }, 1000);
             }
           }
