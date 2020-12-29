@@ -4,10 +4,13 @@ import store from '../../app/store';
 import {
     incremented,
     decremented,
-    incrementByAmount,
-    selectCount
-} from './counterSlice';
+    toZero,
+    incrementByAmount
+} from './actions';
+import { selectCount } from './counterReducer';
 import styles from './Counter.module.css';
+
+const {dispatch} = store;
 
 export function Counter() {
   const count = useSelector(selectCount);
@@ -19,7 +22,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => store.dispatch(incremented())}
+          onClick={() => dispatch(incremented())}
         >
           +
         </button>
@@ -27,9 +30,16 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => store.dispatch(decremented())}
+          onClick={() => dispatch(decremented())}
         >
           -
+        </button>
+        <button
+          className={styles.button}
+          aria-label="Zero value"
+          onClick={() => dispatch(toZero())}
+        >
+          0
         </button>
       </div>
       <div className={styles.row}>
@@ -42,7 +52,7 @@ export function Counter() {
         {<button
           className={styles.button}
           onClick={() => {
-              return store.dispatch(incrementByAmount((Number(incrementAmount) || 0)));
+              return dispatch(incrementByAmount((Number(incrementAmount) || 0)));
             }
           }
         >
@@ -52,7 +62,7 @@ export function Counter() {
           className={styles.asyncButton}
           onClick={() => {
             setTimeout(() => {
-              store.dispatch(incrementByAmount((Number(incrementAmount) || 0)));
+              dispatch(incrementByAmount((Number(incrementAmount) || 0)));
             }, 1000);
             }
           }
