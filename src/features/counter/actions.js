@@ -1,4 +1,3 @@
-
 import { types } from './counterReducer';
 
 export const incremented = () => ({type: types.incremented});
