@@ -63,13 +63,12 @@ export const windowLocation = {
 
 const windowLocationState = +windowLocation.get().value || 0;
 
-const cookiesState =
-  +document.cookie.replace(
-    /(?:(?:^|.*;\s*)state\s*\=\s*([^;]*).*$)|^.*$/,
-    "$1"
-  );
-  
- const initialState = windowLocationState || cookiesState || 0;
+const cookiesState = +document.cookie.replace(
+  /(?:(?:^|.*;\s*)state\s*\=\s*([^;]*).*$)|^.*$/,
+  "$1"
+);
+
+const initialState = windowLocationState || cookiesState || 0;
 
 function counterReducer(state = { value: initialState }, action) {
   switch (action.type) {

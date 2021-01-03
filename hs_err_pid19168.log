@@ -1,0 +1,178 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=19168, tid=0x0000000000003c30
+#
+# JRE version:  (8.0_271-b09) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.271-b09 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000015f12d41800):  JavaThread "Unknown thread" [_thread_in_vm, id=15408, stack(0x0000005952f00000,0x0000005953000000)]
+
+Stack: [0x0000005952f00000,0x0000005953000000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x33f6c9]
+V  [jvm.dll+0x286122]
+V  [jvm.dll+0x286dcd]
+V  [jvm.dll+0x27d805]
+V  [jvm.dll+0x1565d]
+V  [jvm.dll+0x3e35e7]
+V  [jvm.dll+0x3e3fd8]
+V  [jvm.dll+0x10cfff]
+V  [jvm.dll+0x21ab2b]
+V  [jvm.dll+0x2494e7]
+V  [jvm.dll+0x172a76]
+C  [java.exe+0x2312]
+C  [java.exe+0x15f54]
+C  [KERNEL32.DLL+0x17034]
+C  [ntdll.dll+0x4d0d1]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000015f12d41800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=15408, stack(0x0000005952f00000,0x0000005953000000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x00000006c0c00000, size: 4084 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x00000007c0000000
+
+Heap:
+ PSYoungGen      total 76288K, used 1310K [0x000000076af00000, 0x0000000770400000, 0x00000007c0000000)
+  eden space 65536K, 2% used [0x000000076af00000,0x000000076b047af0,0x000000076ef00000)
+  from space 10752K, 0% used [0x000000076f980000,0x000000076f980000,0x0000000770400000)
+  to   space 10752K, 0% used [0x000000076ef00000,0x000000076ef00000,0x000000076f980000)
+ ParOldGen       total 175104K, used 0K [0x00000006c0c00000, 0x00000006cb700000, 0x000000076af00000)
+  object space 175104K, 0% used [0x00000006c0c00000,0x00000006c0c00000,0x00000006cb700000)
+ Metaspace       used 752K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 76K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x0000015f23ac0000,0x0000015f242c0000] byte_map_base: 0x0000015f204ba000
+
+Marking Bits: (ParMarkBitMap*) 0x0000000070147fe0
+ Begin Bits: [0x0000015f24820000, 0x0000015f287f0000)
+ End Bits:   [0x0000015f287f0000, 0x0000015f2c7c0000)
+
+Polling page: 0x0000015f12ea0000
+
+CodeCache: size=245760Kb used=327Kb max_used=327Kb free=245432Kb
+ bounds [0x0000015f14700000, 0x0000015f14970000, 0x0000015f23700000]
+ total_blobs=57 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.018 loading class java/lang/Short
+Event: 0.018 loading class java/lang/Short done
+Event: 0.018 loading class java/lang/Integer
+Event: 0.018 loading class java/lang/Integer done
+Event: 0.018 loading class java/lang/Long
+Event: 0.018 loading class java/lang/Long done
+Event: 0.018 loading class java/lang/NullPointerException
+Event: 0.018 loading class java/lang/NullPointerException done
+Event: 0.018 loading class java/lang/ArithmeticException
+Event: 0.018 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff707950000 - 0x00007ff707997000 	C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.exe
+0x00007ffcf5510000 - 0x00007ffcf5706000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffcf3770000 - 0x00007ffcf382d000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffcf2c50000 - 0x00007ffcf2f19000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffcf0310000 - 0x00007ffcf03a0000 	C:\WINDOWS\SYSTEM32\apphelp.dll
+0x00007ffcf46f0000 - 0x00007ffcf479c000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffcf4ec0000 - 0x00007ffcf4f5e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffcf45f0000 - 0x00007ffcf468c000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffcf3640000 - 0x00007ffcf376b000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffcf3f80000 - 0x00007ffcf4120000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffcf3050000 - 0x00007ffcf3072000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffcf4be0000 - 0x00007ffcf4c0a000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffcf32e0000 - 0x00007ffcf33e9000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffcf3080000 - 0x00007ffcf311d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffcf33f0000 - 0x00007ffcf34f0000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffce4520000 - 0x00007ffce47bb000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.488_none_ca04af081b815d21\COMCTL32.dll
+0x00007ffcf4880000 - 0x00007ffcf48b0000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffcd1220000 - 0x00007ffcd1235000 	C:\Program Files\Java\jre1.8.0_271\bin\vcruntime140.dll
+0x00007ffcb30c0000 - 0x00007ffcb315b000 	C:\Program Files\Java\jre1.8.0_271\bin\msvcp140.dll
+0x000000006f950000 - 0x00000000701bf000 	C:\Program Files\Java\jre1.8.0_271\bin\server\jvm.dll
+0x00007ffcf4f90000 - 0x00007ffcf4f98000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffcdeb00000 - 0x00007ffcdeb27000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffcc1b30000 - 0x00007ffcc1b39000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffceb9d0000 - 0x00007ffceb9da000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffcf48b0000 - 0x00007ffcf491b000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffcf0bb0000 - 0x00007ffcf0bc2000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffcd63a0000 - 0x00007ffcd63b0000 	C:\Program Files\Java\jre1.8.0_271\bin\verify.dll
+0x00007ffccbd10000 - 0x00007ffccbd3b000 	C:\Program Files\Java\jre1.8.0_271\bin\java.dll
+0x00007ffccbc10000 - 0x00007ffccbc28000 	C:\Program Files\Java\jre1.8.0_271\bin\zip.dll
+0x00007ffceb390000 - 0x00007ffceb574000 	C:\WINDOWS\SYSTEM32\dbghelp.dll
+0x00007ffcf34f0000 - 0x00007ffcf3570000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+
+VM Arguments:
+java_command: App 54934
+java_class_path (initial): c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\annotations-12.0.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\autolink-0.6.0.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\berkeleylm-1.1.2.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\commons-lang3-3.5.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\commons-logging-1.2.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-0.19.1.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-all-0.19.1.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-ext-abbreviation-0.19.1.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-ext-anchorlink-0.19.1.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-ext-aside-0.19.1.jar;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\fl
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+CLASSPATH=c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\*;c:\Users\Dmitriy\.vscode\extensions\adamvoss.vscode-languagetool-ru-3.8.0\lib\*
+PATH=C:\Program Files (x86)\Common Files\Oracle\Java\javapath;c:\programdata\oracle\java\javapath;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\program files (x86)\quicktime\qtsystem\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32\wbem;C:\WINDOWS\system32\windowspowershell\v1.0\;C:\WINDOWS\system32\openssh\;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;D:\wamp64_3.1.7\bin\php\php7.2.14\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Calibre2\;C:\Program Files (x86)\AOMEI\AOMEI Backupper 6.1.0;C:\Program Files\Java\jdk1.8.0_271\bin;C:\Program Files\ideaIU-2020.1\bin;C:\Program Files\Java\jdk-15.0.1\bin;C:\ProgramData\chocolatey\bin;D:\elixir\bin;C:\Program Files\erl-23.1\bin;C:\nodejs\;D:\Git\cmd;C:\Python27\;C:\Users\Dmitriy\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\Dmitriy\AppData\Local\Programs\Python\Python38\;C:\Users\Dmitriy\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Dmitriy\AppData\Local\Programs\Python\Python37\;C:\Users\Dmitriy\AppData\Local\Microsoft\WindowsApps;C:\Users\Dmitriy\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Dmitriy\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\WebStorm 2019.2\bin;C:\Users\Dmitriy\.dotnet\tools;C:\Users\Dmitriy\AppData\Roaming\npm
+USERNAME=Dmitriy
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 23 Model 113 Stepping 0, AuthenticAMD
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 19041 (10.0.19041.662)
+
+CPU:total 12 (initial active 12) (12 cores per cpu, 1 threads per core) family 23 model 113 stepping 0, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, mmxext, 3dnowpref, lzcnt, sse4a, tsc, tscinvbit, tscinv, bmi1
+
+Memory: 4k page, physical 16725116k(4456980k free), swap 16725116k(141872k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.271-b09) for windows-amd64 JRE (1.8.0_271-b09), built on Sep 16 2020 19:14:59 by "" with MS VC++ 15.9 (VS2017)
+
+time: Sun Jan  3 21:42:30 2021
+timezone: Russia TZ 2 Standard Time
+elapsed time: 0.085758 seconds (0d 0h 0m 0s)
+
