@@ -11,6 +11,8 @@ store.subscribe(() => {
   windowLocation.clear();
   windowLocation.add("value", store.getState().value);
   document.cookie = `state=${store.getState().value}`;
+  localStorage.setItem('value', store.getState().value);
 });
 
 export default store;
+

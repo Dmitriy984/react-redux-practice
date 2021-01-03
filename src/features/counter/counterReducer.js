@@ -68,7 +68,10 @@ const cookiesState = +document.cookie.replace(
   "$1"
 );
 
-const initialState = windowLocationState || cookiesState || 0;
+const localStorageState = +localStorage.getItem("value");
+
+const initialState =
+  windowLocationState || cookiesState || localStorageState || 0;
 
 function counterReducer(state = { value: initialState }, action) {
   switch (action.type) {
