@@ -16,7 +16,11 @@ const {
 
 export function Counter() {
   const count = useSelector(selectCount);
-  const [incrementAmount, setIncrementAmount] = useState("2");
+  
+  const [incrementAmount, setIncrementAmount] = useState(
+    localStorage.getItem("incrementAmount") || "2"
+  );
+  localStorage.setItem("incrementAmount", incrementAmount);
 
   return (
     <div>

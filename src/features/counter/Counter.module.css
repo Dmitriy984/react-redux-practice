@@ -17,6 +17,7 @@
 }
 
 .button {
+  margin: 0px 5px;
   appearance: none;
   background: none;
   font-size: 32px;
