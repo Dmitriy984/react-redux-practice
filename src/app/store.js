@@ -1,12 +1,13 @@
-import { createStore } from 'redux';
-import counterReducer from '../features/counter/counterSlice';
-import { Hash } from '../features/counter/counterSlice';
+import { createStore } from "redux";
+import counterReducer, {
+  windowLocation,
+} from "../features/counter/counterReducer";
 
-let store = createStore(counterReducer)
+let store = createStore(counterReducer);
 
 store.subscribe(() => {
-    Hash.clear();
-    Hash.add('value', store.getState().value);
-})
+  windowLocation.clear();
+  windowLocation.add("value", store.getState().value);
+});
 
 export default store;
