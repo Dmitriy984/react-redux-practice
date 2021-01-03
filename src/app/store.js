@@ -1,10 +1,18 @@
-import { createStore } from 'redux';
-import counterReducer from '../features/counter/counterReducer';
+import { createStore } from "redux";
+
+import counterReducer, {
+  windowLocation,
+} from "../features/counter/counterReducer";
+
 
 let store = createStore(counterReducer);
 
 store.subscribe(() => {
-    localStorage.setItem('value', store.getState().value);
+  windowLocation.clear();
+  windowLocation.add("value", store.getState().value);
+  document.cookie = `state=${store.getState().value}`;
+  localStorage.setItem('value', store.getState().value);
 });
 
 export default store;
+

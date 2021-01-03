@@ -7,7 +7,6 @@ import { selectCount } from "./counterReducer";
 import styles from "./Counter.module.css";
 
 const { dispatch } = store;
-
 const {
   incremented,
   decremented,
@@ -17,6 +16,7 @@ const {
 
 export function Counter() {
   const count = useSelector(selectCount);
+
   const [incrementAmount, setIncrementAmount] = useState(
     localStorage.getItem("incrementAmount") || "2"
   );
@@ -79,3 +79,4 @@ export function Counter() {
     </div>
   );
 }
+
