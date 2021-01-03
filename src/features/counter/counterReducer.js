@@ -1,9 +1,9 @@
-const incremented = 'counter/incremented';
-const decremented = 'counter/decremented';
-const toZero = 'counter/toZero';
-const incrementByAmount = 'counter/incrementByAmount';
+const incremented = "counter/incremented";
+const decremented = "counter/decremented";
+const toZero = "counter/toZero";
+const incrementByAmount = "counter/incrementByAmount";
 
-const localStorageState = +localStorage.getItem('value') || 0;
+const localStorageState = +localStorage.getItem("value") || 0;
 
 function counterReducer(state = { value: localStorageState }, action) {
   switch (action.type) {
@@ -12,16 +12,16 @@ function counterReducer(state = { value: localStorageState }, action) {
     case decremented:
       return { value: state.value - 1 };
     case toZero:
-      return { value: state.value = 0 };
+      return { value: (state.value = 0) };
     case incrementByAmount:
-      return { value: state.value += action.payload };
+      return { value: (state.value += action.payload) };
     default:
       return state;
   }
 }
 
-export const selectCount = state => state.value;
+export const selectCount = (state) => state.value;
 
-export const types = {incremented, decremented, toZero, incrementByAmount};
+export const types = { incremented, decremented, toZero, incrementByAmount };
 
 export default counterReducer;
