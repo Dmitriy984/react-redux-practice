@@ -5,3 +5,8 @@ export const incrementByAmount = (payload) => ({
   type: "counter/incrementByAmount",
   payload,
 });
+export const asyncIncremented = (amount) => (dispatch) => {
+  setTimeout(() => {
+    dispatch(incrementByAmount(amount));
+  }, 1000);
+};

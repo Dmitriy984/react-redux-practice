@@ -12,6 +12,7 @@ const {
   decremented,
   toZero,
   incrementByAmount,
+  asyncIncremented
 } = bindActionCreators(actions, dispatch);
 
 export function Counter() {
@@ -68,9 +69,7 @@ export function Counter() {
         <button
           className={styles.asyncButton}
           onClick={() => {
-            setTimeout(() => {
-              incrementByAmount(Number(incrementAmount) || 0);
-            }, 1000);
+            asyncIncremented(Number(incrementAmount) || 0);
           }}
         >
           Add Async
