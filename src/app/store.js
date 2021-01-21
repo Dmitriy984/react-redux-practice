@@ -10,6 +10,8 @@ let store = createStore(
   )
 );
 
+
+
 store.subscribe(() => {
   window.location.hash = store.getState().value;
   document.cookie = `state=${store.getState().value}`;
