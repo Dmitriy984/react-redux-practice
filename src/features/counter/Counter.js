@@ -1,24 +1,16 @@
 import React, { useState } from "react";
-// import { bindActionCreators } from "redux";
-//import { useSelector } from "react-redux";
-// import store from "../../app/store";
 import * as actions from "./actions";
-//import { selectCount } from "./counterReducer";
 import styles from "./Counter.module.css";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-// const { dispatch } = store;
-// const {
-//   incremented,
-//   decremented,
-//   toZero,
-//   incrementByAmount,
-//   asyncIncremented
-// } = bindActionCreators(actions, dispatch);
-
-function Counter({counter, incremented, decremented, toZero, incrementByAmount, asyncIncremented}) {
-  // const count = useSelector(selectCount);
-
+function Counter({
+  counter,
+  incremented,
+  decremented,
+  toZero,
+  incrementByAmount,
+  asyncIncremented,
+}) {
   const [incrementAmount, setIncrementAmount] = useState(
     localStorage.getItem("incrementAmount") || "2"
   );
@@ -82,25 +74,8 @@ function Counter({counter, incremented, decremented, toZero, incrementByAmount, 
 
 const mapStateToProps = (state) => {
   return {
-    counter: state.value
-  }
-}
-
-// const mapDispatchToProps = (dispatch) => {
-//   const {
-//     incremented,
-//     decremented,
-//     toZero,
-//     incrementByAmount,
-//     asyncIncremented
-//   } = bindActionCreators(actions, dispatch);
-//   return {
-//     incremented,
-//     decremented,
-//     toZero,
-//     incrementByAmount,
-//     asyncIncremented
-//   }
-// }
+    counter: state.value,
+  };
+};
 
 export default connect(mapStateToProps, actions)(Counter);
