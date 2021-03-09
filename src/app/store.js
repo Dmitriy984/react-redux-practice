@@ -1,29 +1,30 @@
 import { applyMiddleware, createStore } from "redux";
-import counterReducer from "../features/counter/counterReducer";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { rootReducer } from "../features/counter/rootReducer";
 
 let store = createStore(
-  counterReducer,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
 store.subscribe(() => {
+  const {
+    counter: { value },
+    storage: { storage },
+  } = store.getState();
 
-  const { value, storage } = store.getState();
-
-  if (storage === 'localStorage') {
+  if (storage === "localStorage") {
     localStorage.setItem("count", value);
   }
 
-  if (storage === 'windowLocation') {
+  if (storage === "windowLocation") {
     window.location.hash = value;
   }
 
-  if (storage === 'cookies') {
+  if (storage === "cookies") {
     document.cookie = `count=${value}`;
   }
-
 });
 
 export default store;

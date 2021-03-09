@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { selectStorage } from "../counter/actions";
 import deleteCookie from "../../utils/deleteCookie";
 
+
 const SelectorStorage = ({ storage, selectStorage }) => {
+
   function removeHash() {
     window.history.pushState(
       "",
@@ -20,7 +22,6 @@ const SelectorStorage = ({ storage, selectStorage }) => {
       deleteCookie("count");
     }
     if (localStorage.count !== undefined) {
-      console.log(localStorage.count);
       delete localStorage.count;
     }
   }, []);
@@ -59,21 +60,22 @@ const SelectorStorage = ({ storage, selectStorage }) => {
   }, [storage, cleaner]);
 
   return (
-    <p>
+    <div>
+      <h2 style={{ color: "red", marginBottom: "10px" }}>Please!</h2>
       <select onChange={(e) => selectStorage(e.target.value)}>
         <option>Select storage</option>
         <option value="localStorage">LocalStorage</option>
         <option value="windowLocation">WindowLocation</option>
         <option value="cookies">Cookies</option>
       </select>
-    </p>
+    </div>
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ counter, storage }) => {
   return {
-    counter: state.value,
-    storage: state.storage
+    counter: counter.value,
+    storage: storage.storage,
   };
 };
 

@@ -15,23 +15,13 @@ export const asyncIncremented = (amount) => (dispatch) => {
 
 export function disableButtons() {
   return {
-    type: "storage/disableButtons"
-  };
-}
-
-export function enableButtons() {
-  return {
-    type: "storage/enableButtons"
+    type: "storage/disableButtons",
   };
 }
 
 export function selectStorage(storage) {
   return {
     type: "storage/saveCount",
-    payload: storage
+    payload: storage,
   };
 }
-
-
-
-

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as actions from "./actions";
 import styles from "./Counter.module.css";
 
-
 function Counter({
   counter,
   storage,
@@ -14,18 +13,16 @@ function Counter({
   incrementByAmount,
   asyncIncremented,
   disableButtons,
-  enableButtons
 }) {
-
   const [incrementAmount, setIncrementAmount] = useState("2");
 
   useEffect(() => {
-    if (storage === "Select storage" || storage === null) {
+    if (storage === "Select storage") {
       disableButtons();
-    } else {
-      enableButtons();
+      toZero();
+      setIncrementAmount("2");
     }
-  }, [storage, disableButtons, enableButtons]);
+  }, [storage, disableButtons, toZero]);
 
   return (
     <div>
@@ -89,11 +86,11 @@ function Counter({
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ counter, storage }) => {
   return {
-    counter: state.value,
-    storage: state.storage,
-    disabled: state.disabled
+    counter: counter.value,
+    storage: storage.storage,
+    disabled: storage.disabled,
   };
 };
 
