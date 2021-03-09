@@ -9,9 +9,21 @@ let store = createStore(
 );
 
 store.subscribe(() => {
-  window.location.hash = store.getState().value;
-  document.cookie = `state=${store.getState().value}`;
-  localStorage.setItem("value", store.getState().value);
+
+  const { value, storage } = store.getState();
+
+  if (storage === 'localStorage') {
+    localStorage.setItem("count", value);
+  }
+
+  if (storage === 'windowLocation') {
+    window.location.hash = value;
+  }
+
+  if (storage === 'cookies') {
+    document.cookie = `count=${value}`;
+  }
+
 });
 
 export default store;
