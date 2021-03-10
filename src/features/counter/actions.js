@@ -21,7 +21,7 @@ export function disableButtons() {
 
 export function selectStorage(storage) {
   return {
-    type: "storage/saveCount",
+    type: "storage/selectStorage",
     payload: storage,
   };
 }

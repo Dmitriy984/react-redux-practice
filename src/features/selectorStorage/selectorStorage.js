@@ -27,7 +27,8 @@ const SelectorStorage = ({ storage, selectStorage }) => {
   }, []);
 
   useEffect(() => {
-    if (storage === "Select storage" || storage === null) {
+
+    if (storage === "selectStorage") {
       cleaner();
     }
 
@@ -50,6 +51,7 @@ const SelectorStorage = ({ storage, selectStorage }) => {
     }
 
     if (storage === "cookies") {
+      console.log(storage);
       if (window.location.hash) {
         removeHash();
       }
@@ -61,12 +63,24 @@ const SelectorStorage = ({ storage, selectStorage }) => {
 
   return (
     <div>
-      <h2 style={{ color: "red", marginBottom: "10px" }}>Please!</h2>
-      <select onChange={(e) => selectStorage(e.target.value)}>
-        <option>Select storage</option>
-        <option value="localStorage">LocalStorage</option>
-        <option value="windowLocation">WindowLocation</option>
-        <option value="cookies">Cookies</option>
+      <h2 style={{ color: "red", margin: "20px 0" }}>Please!</h2>
+      <select
+        className="custom-select"
+        value={storage}
+        onChange={(e) => selectStorage(e.target.value)}>
+        <option
+          value="selectStorage">
+          Select storage
+        </option>
+        <option value="localStorage">
+          LocalStorage
+        </option>
+        <option value="windowLocation">
+          WindowLocation
+        </option>
+        <option value="cookies">
+          Cookies
+        </option>
       </select>
     </div>
   );

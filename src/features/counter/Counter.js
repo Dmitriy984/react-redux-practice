@@ -17,7 +17,7 @@ function Counter({
   const [incrementAmount, setIncrementAmount] = useState("2");
 
   useEffect(() => {
-    if (storage === "Select storage") {
+    if (storage === "selectStorage") {
       disableButtons();
       toZero();
       setIncrementAmount("2");

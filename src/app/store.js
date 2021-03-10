@@ -25,6 +25,8 @@ store.subscribe(() => {
   if (storage === "cookies") {
     document.cookie = `count=${value}`;
   }
+
+  localStorage.setItem("storageState", storage);
 });
 
 export default store;

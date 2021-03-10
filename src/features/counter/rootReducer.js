@@ -1,6 +1,15 @@
 import { combineReducers } from "redux";
+import readCookie from '../../utils/readCookie';
 
-function counterReducer(state = { value: 0 }, action) {
+
+const windowLocationState = +window.location.hash.substr(1);
+export const cookieState = +readCookie("count");
+const localStorageState = +localStorage.getItem("count");
+
+const initialCounterState =
+  windowLocationState || cookieState || localStorageState || 0;
+
+function counterReducer(state = {value: initialCounterState}, action) {
   switch (action.type) {
     case "counter/incremented":
       return { value: state.value + 1 };
@@ -15,9 +24,14 @@ function counterReducer(state = { value: 0 }, action) {
   }
 }
 
-function storageReducer(state = { storage: null, disabled: true }, action) {
+const initialStorageState = {
+  storage: localStorage.getItem("storageState"),
+  disabled: false
+};
+
+function storageReducer(state = initialStorageState, action) {
   switch (action.type) {
-    case "storage/saveCount":
+    case "storage/selectStorage":
       return { storage: action.payload, disabled: false };
     case "storage/disableButtons":
       return { ...state, disabled: true };
