@@ -3,7 +3,7 @@ import readCookie from '../../utils/readCookie';
 
 
 const windowLocationState = +window.location.hash.substr(1);
-export const cookieState = +readCookie("count");
+const cookieState = +readCookie("count");
 const localStorageState = +localStorage.getItem("count");
 
 const initialCounterState =

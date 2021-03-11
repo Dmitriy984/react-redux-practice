@@ -1,10 +1,10 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { selectStorage } from "../counter/actions";
 import deleteCookie from "../../utils/deleteCookie";
 
 
-const SelectorStorage = ({ storage, selectStorage }) => {
+const SelectorStorage = ({ storage, counter, selectStorage }) => {
 
   function removeHash() {
     window.history.pushState(
@@ -14,25 +14,24 @@ const SelectorStorage = ({ storage, selectStorage }) => {
     );
   }
 
-  const cleaner = useCallback(() => {
-    if (window.location.hash) {
-      removeHash();
-    }
-    if (document.cookie.indexOf("count") !== -1) {
-      deleteCookie("count");
-    }
-    if (localStorage.count !== undefined) {
-      delete localStorage.count;
-    }
-  }, []);
-
   useEffect(() => {
+    localStorage.setItem("storageState", storage);
 
     if (storage === "selectStorage") {
-      cleaner();
+      if (window.location.hash) {
+        removeHash();
+      }
+      if (document.cookie.indexOf("count") !== -1) {
+        deleteCookie("count");
+      }
+      if (localStorage.count !== undefined) {
+        delete localStorage.count;
+      }
     }
 
     if (storage === "localStorage") {
+      localStorage.setItem("count", counter);
+
       if (window.location.hash) {
         removeHash();
       }
@@ -42,6 +41,8 @@ const SelectorStorage = ({ storage, selectStorage }) => {
     }
 
     if (storage === "windowLocation") {
+      window.location.hash = counter;
+
       if (document.cookie.indexOf("count") !== -1) {
         deleteCookie("count");
       }
@@ -51,7 +52,8 @@ const SelectorStorage = ({ storage, selectStorage }) => {
     }
 
     if (storage === "cookies") {
-      console.log(storage);
+      document.cookie = `count=${counter}`;
+
       if (window.location.hash) {
         removeHash();
       }
@@ -59,7 +61,7 @@ const SelectorStorage = ({ storage, selectStorage }) => {
         delete localStorage.count;
       }
     }
-  }, [storage, cleaner]);
+  }, [storage, counter]);
 
   return (
     <div>
@@ -67,20 +69,12 @@ const SelectorStorage = ({ storage, selectStorage }) => {
       <select
         className="custom-select"
         value={storage}
-        onChange={(e) => selectStorage(e.target.value)}>
-        <option
-          value="selectStorage">
-          Select storage
-        </option>
-        <option value="localStorage">
-          LocalStorage
-        </option>
-        <option value="windowLocation">
-          WindowLocation
-        </option>
-        <option value="cookies">
-          Cookies
-        </option>
+        onChange={(e) => selectStorage(e.target.value)}
+      >
+        <option value="selectStorage">Select storage</option>
+        <option value="localStorage">LocalStorage</option>
+        <option value="windowLocation">WindowLocation</option>
+        <option value="cookies">Cookies</option>
       </select>
     </div>
   );

@@ -8,25 +8,4 @@ let store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-store.subscribe(() => {
-  const {
-    counter: { value },
-    storage: { storage },
-  } = store.getState();
-
-  if (storage === "localStorage") {
-    localStorage.setItem("count", value);
-  }
-
-  if (storage === "windowLocation") {
-    window.location.hash = value;
-  }
-
-  if (storage === "cookies") {
-    document.cookie = `count=${value}`;
-  }
-
-  localStorage.setItem("storageState", storage);
-});
-
 export default store;
